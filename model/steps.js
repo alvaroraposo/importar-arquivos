@@ -1,27 +1,27 @@
+const CoordinatesAccess = require('../dataaccess/coordinatesaccess.js');
 const Task = require('./Task.js');
 
 class Steps {
     Steps = () => {};
     static #instance;
-    static #steps = ['importar', 'documento', 'documentoIsolado', 'tipo', 'tipoClick', 'assunto', 'assuntoClick', 'orgaoEmissor', 'orgaoEmissorClick', 'descricao', 'procurar', 'abrir', 'salvar', 'ok'];
+    static #tasks = [];
 
-    static getInstance = (jsonFile) => {
+    static getInstance = async () => {
         if(instance == null)
-            instance = new Steps();
-        
-        this.#instance = jsonFile;
+            instance = new Steps();        
+
+        await readSteps();
     }
 
-    setStep = (step, x, y, text, sleep) => {
-        if(!steps.includes(step))
-            return;
-
-        this[step] = new Task({x, y, text, sleep});
+    #readSteps = async () => {
+        const coordinatesAccess = new CoordinatesAccess();
+        tasks = await coordinatesAccess.read();
     }
 
-    run = (robot) => {
-        for(step of steps) {
-            await this[step].executeTask(robot);
+    static run = (robot) => {
+        for(step of tasks) {
+            const task = new Task(step);
+            await task.executeTask(robot);
         }
     }
 }
