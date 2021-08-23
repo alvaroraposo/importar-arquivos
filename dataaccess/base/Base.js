@@ -1,4 +1,4 @@
-const NotImplementedException = require("../errors/NotImplementedException");
+const NotImplementedException = require("../../errors/NotImplementedException");
 
 class Base {
     read = () => {

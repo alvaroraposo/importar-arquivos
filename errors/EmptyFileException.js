@@ -1,11 +1,11 @@
-class EmptyFileError extends Error {
+class EmptyFileException extends Error {
     constructor(fileName){
         super();
 
-        this.name = "EmptyFileError";
+        this.name = "EmptyFileException";
         this.message = `Arquivo ${fileName} vazio`;
         console.log(this.message);
     }    
 }
 
-module.exports = EmptyFileError;
+module.exports = EmptyFileException;

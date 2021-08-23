@@ -1,7 +1,7 @@
 const Base = require("./Base");
 const path = require("path");
 const { readFile } = require("fs/promises");
-const FileNotFoundError = require("../errors/FileNotFoundError");
+const FileNotFoundException = require("../../errors/FileNotFoundException");
 
 class BaseClass extends Base {        
     async read(filename) {
@@ -12,7 +12,7 @@ class BaseClass extends Base {
             const pathResolved = path.resolve(`${__dirname}`, "./../../bd/" + filename);
             file = await readFile(pathResolved);                        
         } catch (error) {
-            throw new FileNotFoundError("config.json");   
+            throw new FileNotFoundException("config.json");   
         }
         
         try {            

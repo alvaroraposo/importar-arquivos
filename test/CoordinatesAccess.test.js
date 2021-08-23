@@ -1,8 +1,8 @@
 const CoordinatesAccess = require("../dataaccess/CoordinatesAccess");
 const { describe, expect, test, beforeEach, afterEach } = require("@jest/globals");
 const sinon = require("sinon");
-const EmptyFileError = require("../dataaccess/errors/EmptyFileError");
-const FileNotFoundError = require("../dataaccess/errors/FileNotFoundError");
+const EmptyFileException = require("../errors/EmptyFileException");
+const FileNotFoundException = require("../errors/FileNotFoundException");
 const mocks = {
     invalidAttribute: require("./mocks/coordinates-invalid-attribute.json"),
     hasInvalidValue: require("./mocks/coordinates-invalid-value.json"),
@@ -61,24 +61,29 @@ describe("access to coordinates.json", () => {
     test("is file empty", async () => {
         const coordinatesAccess = new CoordinatesAccess();
         const stub = sandBox.stub(coordinatesAccess, coordinatesAccess.read.name);
-        stub.rejects(new EmptyFileError("coordinates.json"));
+        stub.rejects(new EmptyFileException("coordinates.json"));
         
         const call = async () => {
             return await coordinatesAccess.read();
         }
 
-        expect(call).rejects.toThrow(EmptyFileError);            
+        expect(call).rejects.toThrow(EmptyFileException);            
     });
 
     test("no file", async () => {        
         const coordinatesAccess = new CoordinatesAccess();
         const stub = sandBox.stub(coordinatesAccess, coordinatesAccess.read.name);
-        stub.rejects(new FileNotFoundError("coordinates.json"));
+        stub.rejects(new FileNotFoundException("coordinates.json"));
         
         const call = async () => {
             await coordinatesAccess.read();
         }
         
+<<<<<<< Updated upstream
         expect(call).rejects.toThrow(FileNotFoundError);            
     })
+=======
+        expect(call).rejects.toThrow(FileNotFoundException);            
+    })   
+>>>>>>> Stashed changes
 })
