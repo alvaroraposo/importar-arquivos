@@ -1,24 +1,27 @@
 const CoordinatesAccess = require('../dataaccess/coordinatesaccess.js');
+const InvaliRobotException = require('../errors/InvalidRobotException.js');
 const Task = require('./Task.js');
 
 class Steps {
     Steps = () => {};
-    static #instance;
-    static #tasks = [];
 
     static getInstance = async () => {
-        if(instance == null)
-            instance = new Steps();        
-
-        await readSteps();
+        if(!this.instance)
+            this.instance = new Steps();     
+            
+        this.instance.tasks = await this.instance.readSteps();
+        return this.instance;
     }
 
-    #readSteps = async () => {
+    readSteps = async () => {
         const coordinatesAccess = new CoordinatesAccess();
-        tasks = await coordinatesAccess.read();
+        return await coordinatesAccess.read();
     }
 
-    static run = (robot) => {
+    run = async (robot) => {
+        if(!robot)
+            throw InvaliRobotException();
+            
         for(step of tasks) {
             const task = new Task(step);
             await task.executeTask(robot);
