@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.44% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>34/36</span>
+                <span class='fraction'>36/42</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/5</span>
+                <span class='fraction'>3/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.44% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>34/36</span>
+                <span class='fraction'>36/42</span>
             </div>
         
             
@@ -92,19 +92,25 @@
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -115,14 +121,20 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -131,9 +143,9 @@
 &nbsp;
 class CoordinatesAccess extends BaseClass {
     
-    read = async () =&gt; {     
-        return await super.read("coordinates.json");        
-    }
+    read = <span class="fstat-no" title="function not covered" >async () =&gt; {     </span>
+<span class="cstat-no" title="statement not covered" >        return await super.read("coordinates.json");        </span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
     update = <span class="fstat-no" title="function not covered" >(item, newValue) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -142,7 +154,9 @@ class CoordinatesAccess extends BaseClass {
     validateAttributes = (jsonFile) =&gt; {
         const attributes = [
             "x",
-            "y",            
+            "y",
+            "sleep",
+            "text"            
         ];
         
         return (Array.isArray(jsonFile) &amp;&amp; jsonFile.length &gt; 0) &amp;&amp; 
@@ -155,11 +169,15 @@ class CoordinatesAccess extends BaseClass {
         return (Array.isArray(jsonFile) &amp;&amp; 
             jsonFile.length &gt; 0) &amp;&amp;  
             (jsonFile.every(item =&gt; {
-                return Object.values(item).every(num =&gt; {
-                    return Number.isInteger(num)
-                })                                
+                return (Number.isInteger(item.x) &amp;&amp; Number.isInteger(item.y) &amp;&amp; Number.isInteger(item.sleep) &amp;&amp; typeof item.text === 'string');
             }))
-    } 
+    }
+&nbsp;
+    validateSteps = <span class="fstat-no" title="function not covered" >(steps, jsonFile) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        return (Array.isArray(jsonFile) &amp;&amp; Number.isInteger(steps) &amp;&amp; jsonFile.length === steps);</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+&nbsp;
+//    validateFolderPath = (jsonFile) =&gt; existsSync(jsonFile.pasta);
 }
 &nbsp;
 module.exports = CoordinatesAccess;</pre></td></tr></table></pre>
@@ -169,7 +187,7 @@ module.exports = CoordinatesAccess;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Aug 19 2021 10:15:05 GMT-0400 (Amazon Standard Time)
+                at Fri Aug 20 2021 15:56:46 GMT-0400 (Amazon Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

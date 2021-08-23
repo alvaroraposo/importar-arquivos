@@ -13,7 +13,9 @@ class CoordinatesAccess extends BaseClass {
     validateAttributes = (jsonFile) => {
         const attributes = [
             "x",
-            "y",            
+            "y",
+            "sleep",
+            "text"            
         ];
         
         return (Array.isArray(jsonFile) && jsonFile.length > 0) && 
@@ -26,11 +28,15 @@ class CoordinatesAccess extends BaseClass {
         return (Array.isArray(jsonFile) && 
             jsonFile.length > 0) &&  
             (jsonFile.every(item => {
-                return Object.values(item).every(num => {
-                    return Number.isInteger(num)
-                })                                
+                return (Number.isInteger(item.x) && Number.isInteger(item.y) && Number.isInteger(item.sleep) && typeof item.text === 'string');
             }))
-    } 
+    }
+
+    validateSteps = (steps, jsonFile) => {
+        return (Array.isArray(jsonFile) && Number.isInteger(steps) && jsonFile.length === steps);
+    }
+
+//    validateFolderPath = (jsonFile) => existsSync(jsonFile.pasta);
 }
 
 module.exports = CoordinatesAccess;

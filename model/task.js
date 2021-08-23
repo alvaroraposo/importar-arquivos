@@ -13,7 +13,6 @@ class Task {
     }
 
     executeTask = async (robot) => {
-        console.log(`click: ${this.x} - ${this.y}`);
         robot.moveMouse(this.x, this.y);
         robot.mouseClick();
         (this.text != '') ? ncp.copy(this.text.toString()) : null;

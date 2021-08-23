@@ -6,7 +6,8 @@ const FileNotFoundError = require("../dataaccess/errors/FileNotFoundError");
 const mocks = {
     invalidAttribute: require("./mocks/coordinates-invalid-attribute.json"),
     hasInvalidValue: require("./mocks/coordinates-invalid-value.json"),
-    happyPath: require("./mocks/coordinates-happy-path.json")   
+    happyPath: require("./mocks/coordinates-happy-path.json"),
+    invalidStepValue: require("./mocks/coordinates-invalid-step-value.json"),
 }
 
 describe("access to coordinates.json", () => {
@@ -46,7 +47,7 @@ describe("access to coordinates.json", () => {
         expect(ret).toBeFalsy();
     });
 
-    test("happy path", async () => {
+    test.skip("happy path", async () => {
         const coordinatesAccess = new CoordinatesAccess();
         const call = async () => {
             return await coordinatesAccess.read();
@@ -79,5 +80,5 @@ describe("access to coordinates.json", () => {
         }
         
         expect(call).rejects.toThrow(FileNotFoundError);            
-    })   
+    })
 })
