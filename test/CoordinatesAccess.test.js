@@ -47,7 +47,7 @@ describe("access to coordinates.json", () => {
         expect(ret).toBeFalsy();
     });
 
-    test.skip("happy path", async () => {
+    test("happy path", async () => {
         const coordinatesAccess = new CoordinatesAccess();
         const call = async () => {
             return await coordinatesAccess.read();
@@ -55,7 +55,7 @@ describe("access to coordinates.json", () => {
 
         const file = await call();
 
-        expect(file).toStrictEqual(mocks.happyPath);
+        expect(file.length).toStrictEqual(mocks.happyPath.length);
     });
 
     test("is file empty", async () => {

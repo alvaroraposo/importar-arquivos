@@ -14,12 +14,6 @@ describe("test task class", () => {
         sandBox.restore();
     })
 
-    test.skip("test task happy path", () => {
-        const newTask = new Task({x: 1, y: 1});
-
-
-    });
-
     test("execute task with invalid robot", async () => {
         const newTask = new Task({x: 1, y: 1});
 
