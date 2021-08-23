@@ -14,13 +14,10 @@ class Task {
     }
 
     executeTask = async (robot) => {
-<<<<<<< Updated upstream
-=======
         console.log("robot", robot);
         if(robot === null)
             throw new InvaliRobotException();
-
->>>>>>> Stashed changes
+            
         robot.moveMouse(this.x, this.y);
         robot.mouseClick();
         (this.text != '') ? ncp.copy(this.text.toString()) : null;

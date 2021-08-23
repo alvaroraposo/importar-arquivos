@@ -79,11 +79,6 @@ describe("access to coordinates.json", () => {
             await coordinatesAccess.read();
         }
         
-<<<<<<< Updated upstream
-        expect(call).rejects.toThrow(FileNotFoundError);            
-    })
-=======
         expect(call).rejects.toThrow(FileNotFoundException);            
     })   
->>>>>>> Stashed changes
 })
