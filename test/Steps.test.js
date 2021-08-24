@@ -2,7 +2,7 @@ const { describe, expect, test, beforeEach, afterEach } = require("@jest/globals
 const sinon = require("sinon");
 const CoordinatesAccess = require("../dataaccess/CoordinatesAccess");
 const InvaliRobotException = require("../errors/InvalidRobotException");
-const Steps = require("../model/steps");
+const Steps = require("../control/steps");
 
 const mocks = {
     happyPath: require("./mocks/coordinates-happy-path.json"),

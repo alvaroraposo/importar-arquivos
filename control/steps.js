@@ -1,6 +1,6 @@
 const CoordinatesAccess = require('../dataaccess/coordinatesaccess.js');
 const InvaliRobotException = require('../errors/InvalidRobotException.js');
-const Task = require('./Task.js');
+const Task = require('../model/Task.js');
 
 class Steps {
     Steps = () => {};

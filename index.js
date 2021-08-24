@@ -1,7 +1,21 @@
-const ConfigAccess = require("./dataaccess/configaccess");
-const CoordinatesAccess = require("./dataaccess/coordinatesaccess");
+const blessed = require('blessed');
+const contrib = require('blessed-contrib');
+const StartView = require('./view/startMenu/StartView');
+const screen = blessed.screen();
+
 
 (() => {
-    const a = new ConfigAccess();
-    a.read();
+    const startView = new StartView(screen, blessed, contrib);    
+    screen.append(startView.getTable());
+    startView.getTable().focus();
+    
+    screen.render();
+
+/*    let configTable = null;
+    let textBox = null;
+    let label = null;*/
+
+//    console.log("index.js");
+
+
 })();
