@@ -1,4 +1,5 @@
 const BaseView = require("../base/BaseView");
+const StartView = require("../startMenu/StartView");
 
 class ConfigView extends BaseView {
     constructor(screen, blessed, contrib, parent) {
@@ -13,24 +14,49 @@ class ConfigView extends BaseView {
             [7, 'Voltar'] ]
         })
 
-        this.parent = parent;
-        this.loadEvents();
-    }
+        this.label = null;
+        this.textBox = null;
+    }    
 
-    loadEvents = () => {        
-        const that = this;
-
-        this.screen.key(['enter'], function(ch, key) {  
-            if(that.table && that.table.rows.selected === 6) {
-                const startTable = that.parent.initTable();
-        
-                that.screen.remove(that.table);
-                that.screen.append(that.parent.table);
-                
-                that.parent.table.focus();
-                that.screen.render();
-            }                
+    newLabel = (content) => {
+        this.label = this.blessed.text({
+            content,
+            top: "70%"
         })
+    
+        return this.label;
+    }
+    
+    newTextbox = () => {        
+        this.textBox = this.blessed.textbox({
+            inputOnFocus: true,
+            top: "75%",
+            height: "10%",
+            border: {
+                type: 'line',
+                fg: 'blue'
+            },
+            focus: {
+                fg: 'blue'
+            }
+        });
+    
+        this.textBox.on("submit", (data) => {
+            console.log('submit enter', data);
+        });
+    
+        this.textBox.on("blur", () => {
+            if(this.textBox) {
+                this.table.remove(this.label);
+                this.table.remove(this.textBox);                
+                this.table.focus();
+                this.textBox = null;
+                this.label = null;
+            }
+            this.screen.render();
+        })
+    
+        return this.textBox;
     }
 }
 

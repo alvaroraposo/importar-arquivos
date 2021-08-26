@@ -8,17 +8,17 @@ class StartView extends BaseView {
             options: [ [1, 'Importar Arquivos'], 
             [2, 'Configurações']]
         }) 
-
-        this.loadEvents();
     }
 
-    loadEvents = () => {        
+/*    loadEvents = () => {        
         let that = this;
 
         this.screen.key(['enter'], function(ch, key) {       
             if(that.table && that.table.rows.selected === 1) {
-                const configView = new ConfigView(that.screen, that.blessed, that.contrib, that);
-                const configTable = configView.initTable();
+                const configView = new ConfigView(that.screen, that.blessed, that.contrib, that);                
+                configView.initView();
+                
+                const configTable = configView.getTable();
         
                 that.screen.remove(that.table);
                 that.screen.append(configTable);
@@ -27,7 +27,7 @@ class StartView extends BaseView {
                 that.screen.render();      
             }
         })
-    }
+    }*/
 }
 
 module.exports = StartView;

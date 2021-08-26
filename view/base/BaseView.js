@@ -5,14 +5,16 @@ class BaseView {
         this.contrib = contrib;
         this.data = data;    
         this.screen = screen;
-        this.table = this.initTable();
+
+        this.initView();
+        this.table = this.getTable();
 
         this.screen.key(['q', 'C-c'], function(ch, key) {
             return process.exit(0);
         });        
     }
 
-    initTable = function() {
+    initView = function() {
         this.table = this.contrib.table(
             {
               screen: this.screen 
@@ -29,8 +31,6 @@ class BaseView {
             , columnWidth: [14, 30] /*in chars*/ })    
         
         this.table.setData({ headers: this.data.headers, data: this.data.options });
-
-        return this.table;
     }
 
     getTable = function() {            
