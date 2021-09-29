@@ -41,11 +41,6 @@ screen.key(['enter'], function(ch, key) {
     }    
 
     if(configView && configView.getTable().rows.selected === 1) {        
-/*        if(textBox != null) {
-            configTable.remove(label);
-            configTable.remove(textBox);
-        }            */
-
         label = configView.newLabel("Digite Novo Tipo");
         textBox = configView.newTextbox();
 
